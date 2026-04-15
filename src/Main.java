@@ -1,10 +1,21 @@
+import javax.swing.*;
 
-
-
-public class Main {
+public class Main{
     public static void main(String[] args) {
 
+    Thread.setDefaultUncaughtExceptionHandler((t,e) ->
 
-        System.out.println("Hello world");
+                    JOptionPane.showMessageDialog(null,
+                            "Unexpected Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE
+                    )
+            );
+
+    SwingUtilities.invokeLater(() -> {
+
+        CalculatorView view = new CalculatorView();
+        new CalculatorController(view);
+
+    });
+
     }
 }
